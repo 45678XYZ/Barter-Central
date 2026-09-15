@@ -1,6 +1,5 @@
 import os
 import uuid
-from typing import Optional
 
 # 引入 Domain 層的定義 (你的地基)
 from ..domain.entity import User
@@ -9,6 +8,7 @@ from ..domain.repository import UserRepository
 # 引入 Application 層的定義 (上面那兩個檔案)
 from .dtos import GoogleLoginRequest, UserProfileResponse
 from .interfaces import IdentityProvider
+
 
 class AuthService:
     def __init__(self, user_repo: UserRepository, identity_provider: IdentityProvider):
@@ -26,8 +26,8 @@ class AuthService:
         allowed_domain = os.getenv("ALLOWED_EMAIL_DOMAIN", "g.ncu.edu.tw")
         if not identity_data.email.endswith(f"@{allowed_domain}"):
             # 如果不符合，直接拋出錯誤，拒絕登入
-            raise ValueError(f"只允許中央大學的信箱登入")
-        
+            raise ValueError("只允許中央大學的信箱登入")
+
         # 3. 檢查使用者是否存在 (以下邏輯完全不變)
         existing_user = self.user_repo.get_by_email(identity_data.email)
 
@@ -44,7 +44,7 @@ class AuthService:
                 name=identity_data.name,
                 password_hash="EXTERNAL_COGNITO",  # 標記為外部帳號
                 avatar_url=identity_data.avatar_url,
-                is_admin=False, # 預設權限
+                is_admin=False,  # 預設權限
                 is_active=True,
             )
             # 存入資料庫
@@ -57,5 +57,5 @@ class AuthService:
             name=user.name,
             avatar_url=user.avatar_url,
             is_admin=user.is_admin,
-            access_token=id_token 
+            access_token=id_token,
         )

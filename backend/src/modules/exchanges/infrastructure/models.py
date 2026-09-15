@@ -1,12 +1,13 @@
 from datetime import datetime
 
-from sqlalchemy import Boolean, Column, DateTime
+from sqlalchemy import Boolean, DateTime
 from sqlalchemy import Enum as SAEnum
 from sqlalchemy import ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from ...iam.infrastructure.models import Base, UserModel
-from ...inventory.infrastructure.models import ItemModel
+# UserModel / ItemModel 需先載入，relationship("UserModel") 等字串才解析得到
+from ...iam.infrastructure.models import Base, UserModel  # noqa: F401
+from ...inventory.infrastructure.models import ItemModel  # noqa: F401
 from ..domain.entity import ExchangeStatus
 
 

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List, Optional
 
-from .entity import Exchange, ExchangeStatus
+from .entity import Exchange
 
 
 class ExchangeRepository(ABC):

@@ -39,7 +39,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, nextTick, watch } from "vue";
+import { ref, onMounted, onUnmounted, nextTick } from "vue";
 import { exchangesApi } from "@/api";
 
 const props = defineProps({
@@ -85,7 +85,7 @@ const handleSend = async () => {
     newMessage.value = "";
     await fetchMessages(); // 發送後立刻更新
     scrollToBottom();
-  } catch (err) {
+  } catch {
     alert("訊息發送失敗");
   } finally {
     sending.value = false;
