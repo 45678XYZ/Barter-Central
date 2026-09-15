@@ -1,6 +1,16 @@
+# --- Python 虛擬環境（Setup_Guide.md 使用 .venv）---
+.venv/
 venv/
+
+# --- Python 快取 / 工具產物 ---
 __pycache__/
-*.pyc
-# 忽略系統檔案
-.DS_Store
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- 環境變數（含 DB 密碼、Cognito secret，不可 commit）---
 .env
+.env.*
+!.env.example

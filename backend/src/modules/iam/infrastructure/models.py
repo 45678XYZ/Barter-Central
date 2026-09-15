@@ -1,10 +1,10 @@
-from sqlalchemy import Column, String, Boolean
+from sqlalchemy import String, Boolean
 from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import String
 from sqlalchemy.orm import declarative_base
 
 # 這是 SQLAlchemy 的基底類別
 Base = declarative_base()
+
 
 class UserModel(Base):
     __tablename__ = "users"

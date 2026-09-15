@@ -1,6 +1,6 @@
-from typing import List, Optional
+from typing import List
 
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
 from ....database import get_db
@@ -139,22 +139,3 @@ def update_exchange_location(
     return service.update_location(
         current_user.id, exchange_id, request.meetup_location_id
     )
-
-
-# 系統資訊: 分類 (因為 ItemCategory 是 Enum，這裡簡單回傳即可)
-# from ...inventory.domain.entity import ItemCategory
-
-# @router.get("/categories")
-# def get_categories():
-#     # 對應前端要求的中文，這裡做個 Mapping
-#     CATEGORY_MAP = {
-#         ItemCategory.TEXTBOOK: "教科書",
-#         ItemCategory.ELECTRONICS: "3C周邊",
-#         ItemCategory.DAILY_USE: "生活用品",
-#         ItemCategory.FOODSTUFF: "食品",
-#         ItemCategory.FURNITURE: "家具",
-#         ItemCategory.OTHER: "其他",
-#     }
-#     # 或者直接回傳 Enum 值讓前端翻譯，看你的需求
-#     # 這裡依照你的範例回傳 List[str]
-#     return list(CATEGORY_MAP.values())

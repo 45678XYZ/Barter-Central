@@ -1,0 +1,25 @@
+# ============================================================
+# 全域規則（前後端各自的規則寫在 frontend/.gitignore 與 backend/.gitignore）
+# ============================================================
+
+# --- 作業系統產生的檔案 ---
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+
+# --- 編輯器 / IDE（只保留共用的擴充套件建議，個人設定不進版控）---
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# --- 部署打包產物（backend.zip 等，依 IaC/Cloudformation.md 手動上傳到 S3）---
+*.zip
+
+# --- 金鑰 / 機密 ---
+*.pem
+
+# --- Logs ---
+*.log

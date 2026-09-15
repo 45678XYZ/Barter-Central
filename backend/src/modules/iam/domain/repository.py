@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Optional
-from .entity import User  
+from .entity import User
+
 
 class UserRepository(ABC):
     """
