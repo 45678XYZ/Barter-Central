@@ -322,7 +322,7 @@ const performAction = async (fn) => {
   try {
     await fn();
     fetchDetail();
-  } catch (err) {
+  } catch {
     alert("操作失敗");
   } finally {
     isSubmitting.value = false;
@@ -336,7 +336,7 @@ const openLocationModal = async () => {
     try {
       const res = await exchangesApi.getLocations();
       locations.value = res.data;
-    } catch (e) {
+    } catch {
       alert("無法載入地點列表");
       return;
     }
@@ -360,7 +360,7 @@ const handleUpdateLocation = async () => {
     await exchangesApi.updateLocation(exchange.value.id, newLocationId.value);
     showLocationModal.value = false;
     fetchDetail();
-  } catch (err) {
+  } catch {
     alert("更新地點失敗");
   } finally {
     isSubmitting.value = false;

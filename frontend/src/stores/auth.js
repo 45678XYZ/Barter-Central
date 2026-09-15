@@ -50,7 +50,7 @@ export const useAuthStore = defineStore('auth', () => {
       const response = await authApi.getMe();
       user.value = response.data; // 更新 user 資料
       localStorage.setItem('user_info', JSON.stringify(response.data)); // 同步更新 storage
-    } catch (error) {
+    } catch {
       logout();
     }
   };

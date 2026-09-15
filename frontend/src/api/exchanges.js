@@ -32,16 +32,11 @@ export default {
     return apiClient.delete(`/exchanges/${id}`);
   },
 
-  // --- 系統資訊 (地點與分類) ---
+  // --- 系統資訊 (地點) ---
 
   // 5. 取得面交地點清單
   getLocations() {
     return apiClient.get("/locations");
-  },
-
-  // 6. 取得分類清單
-  getCategories() {
-    return apiClient.get("/categories");
   },
 
   // 取得訊息
