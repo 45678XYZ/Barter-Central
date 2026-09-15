@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import Column, String, DateTime, Enum as SAEnum
+from sqlalchemy import String, DateTime, Enum as SAEnum
 from sqlalchemy.orm import Mapped, mapped_column
 from ...iam.infrastructure.models import Base  # 重用同一個 Base
 from ..domain.entity import ItemStatus, ItemCategory

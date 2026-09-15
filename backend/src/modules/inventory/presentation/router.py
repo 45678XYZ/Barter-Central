@@ -1,6 +1,5 @@
 from typing import List, Optional
 from fastapi import APIRouter, Depends, UploadFile, File, Form, HTTPException, status
-from pydantic import ValidationError
 
 # 引入 IAM 模組的驗證功能 (確保只有登入的使用者能刊登)
 from ...iam.dependencies import get_current_user

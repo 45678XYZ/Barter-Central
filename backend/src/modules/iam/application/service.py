@@ -1,6 +1,5 @@
 import os
 import uuid
-from typing import Optional
 
 # 引入 Domain 層的定義 (你的地基)
 from ..domain.entity import User
@@ -26,7 +25,7 @@ class AuthService:
         allowed_domain = os.getenv("ALLOWED_EMAIL_DOMAIN", "g.ncu.edu.tw")
         if not identity_data.email.endswith(f"@{allowed_domain}"):
             # 如果不符合，直接拋出錯誤，拒絕登入
-            raise ValueError(f"只允許中央大學的信箱登入")
+            raise ValueError("只允許中央大學的信箱登入")
         
         # 3. 檢查使用者是否存在 (以下邏輯完全不變)
         existing_user = self.user_repo.get_by_email(identity_data.email)

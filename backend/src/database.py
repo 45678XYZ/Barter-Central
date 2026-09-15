@@ -6,9 +6,10 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from .modules.exchanges.infrastructure.models import ExchangeModel
-from .modules.iam.infrastructure.models import Base, UserModel
-from .modules.inventory.infrastructure.models import ItemModel
+# 匯入所有 Model 讓它們註冊到 Base.metadata，create_all 才會建立對應的 table
+from .modules.exchanges.infrastructure.models import ExchangeModel  # noqa: F401
+from .modules.iam.infrastructure.models import Base, UserModel  # noqa: F401
+from .modules.inventory.infrastructure.models import ItemModel  # noqa: F401
 
 # --- 設定 AWS RDS 連線 (同你原本的程式碼) ---
 RDS_USER = os.getenv("DB_USER", "")
