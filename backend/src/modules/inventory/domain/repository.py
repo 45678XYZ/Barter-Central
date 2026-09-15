@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from typing import List, Optional
 from .entity import Item, ItemCategory
 
+
 class ItemRepository(ABC):
     @abstractmethod
     def save(self, item: Item) -> Item:
@@ -14,7 +15,9 @@ class ItemRepository(ABC):
     @abstractmethod
     def get_by_owner_id(self, owner_id: str) -> List[Item]:
         pass
-    
+
     @abstractmethod
-    def search(self, keyword: Optional[str], category: Optional[ItemCategory]) -> List[Item]:
+    def search(
+        self, keyword: Optional[str], category: Optional[ItemCategory]
+    ) -> List[Item]:
         pass

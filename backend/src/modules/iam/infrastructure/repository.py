@@ -4,6 +4,7 @@ from ..domain.entity import User
 from ..domain.repository import UserRepository
 from .models import UserModel
 
+
 class SqlAlchemyUserRepository(UserRepository):
     def __init__(self, db: Session):
         self.db = db
@@ -17,7 +18,7 @@ class SqlAlchemyUserRepository(UserRepository):
             password_hash=user.password_hash,
             avatar_url=user.avatar_url,
             is_active=user.is_active,
-            is_admin=user.is_admin
+            is_admin=user.is_admin,
         )
 
         # 2. 使用 merge (如果 ID 存在就更新，不存在就新增)
@@ -29,14 +30,14 @@ class SqlAlchemyUserRepository(UserRepository):
     def get_by_email(self, email: str) -> Optional[User]:
         # 執行 SQL 查詢
         user_model = self.db.query(UserModel).filter(UserModel.email == email).first()
-        
+
         if user_model:
             return self._to_entity(user_model)
         return None
 
     def get_by_id(self, user_id: str) -> Optional[User]:
         user_model = self.db.query(UserModel).filter(UserModel.id == user_id).first()
-        
+
         if user_model:
             return self._to_entity(user_model)
         return None
@@ -51,5 +52,5 @@ class SqlAlchemyUserRepository(UserRepository):
             password_hash=model.password_hash,
             avatar_url=model.avatar_url,
             is_active=model.is_active,
-            is_admin=model.is_admin
+            is_admin=model.is_admin,
         )
