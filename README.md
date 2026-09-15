@@ -4,11 +4,18 @@
 
 ## 技術架構
 
+- **高可用性**：Load Balancer、EC2、NAT Gateway 與 RDS 都橫跨兩個 Availability Zone，單一 AZ 故障時服務仍可運作。Auto Scaling Group 至少維持 2 台 EC2，並依 Load Balancer 的健康檢查自動替換故障的機器；RDS 開啟 Multi-AZ，主資料庫故障時會自動切換到另一個 AZ 的備援
+- **安全性**：EC2 與 RDS 都放在私有子網路，無法從網際網路直接連線；Security Group 逐層限制來源，EC2 只接受 Load Balancer 的流量、RDS 只接受 EC2 的連線；Load Balancer 會把 HTTP 自動轉成 HTTPS，憑證由 Certificate Manager 管理
+
+<p align="center">
+  <img src="imgs/aws_architecture.png" alt="AWS 架構圖" width="600">
+</p>
+
 | 項目 | 技術 |
 | --- | --- |
 | 前端 | Vue 3、Vite、Pinia、Vue Router、Axios |
 | 後端 | FastAPI、SQLAlchemy（每個模組分成 domain / application / infrastructure / presentation 四層） |
-| 資料庫 | Amazon RDS MySQL 8.0 |
+| 資料庫 | Amazon RDS MySQL 8.0（Multi-AZ） |
 | 登入 | Amazon Cognito |
 | 部署 | CloudFormation：VPC、ALB、Auto Scaling Group（EC2 + Nginx + Uvicorn）、S3（前端靜態網站、物品圖片、後端部署包） |
 
@@ -62,3 +69,7 @@ npm run dev                       # http://localhost:5173
 ### 部署
 
 使用 CloudFormation 依序建立 network → security → data → app 四個 stack，詳細步驟見 [IaC/README.md](IaC/README.md) 與 [IaC/Cloudformation.md](IaC/Cloudformation.md)
+
+## Demo
+
+![首頁](imgs/demo.png)
