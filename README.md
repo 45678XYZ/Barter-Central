@@ -1,6 +1,6 @@
-# AWS Finals
+# 物物阿阿！中央大學返璞歸真福利社
 
-校園二手物品交換平台：使用中央大學信箱 (`@g.ncu.edu.tw`) 登入後，可以刊登物品、瀏覽與搜尋、對物品提出交換請求，並在交換頁面聊天、約定面交地點與確認交易。
+專為中央大學打造的交易系統，使用中央大學信箱 (`@g.ncu.edu.tw`) 登入後就能在校園內刊登並交易物品。交換頁面內建聊天功能，讓雙方直接溝通並選定交易地點，打造方便的以物易物社群，讓舊物品發揮新價值
 
 ## 技術架構
 
@@ -35,7 +35,9 @@
 └── .github/workflows/     # 檢查只有 dev 分支能合併進 main
 ```
 
-## 本機開發
+## 開發＆部署
+
+### 本機開發
 
 後端（完整步驟見 [backend/Setup_Guide.md](backend/Setup_Guide.md)）：
 
@@ -55,9 +57,8 @@ npm install
 npm run dev                       # http://localhost:5173
 ```
 
-前端連線的 API 位址設定在 `frontend/.env`（開發）與 `frontend/.env.production`（正式站）。
+前端連線的 API 位址設定在 `frontend/.env`；執行 `npm run build` 打包部署時，會改用 `frontend/.env.production` 的設定
 
-## 部署
+### 部署
 
-- 建立 AWS 資源：[IaC/README.md](IaC/README.md)、[IaC/Cloudformation.md](IaC/Cloudformation.md)
-- 分支流程：只有 `dev` 可以發 PR 合併進 `main`（由 GitHub Actions 檢查）
+使用 CloudFormation 依序建立 network → security → data → app 四個 stack，詳細步驟見 [IaC/README.md](IaC/README.md) 與 [IaC/Cloudformation.md](IaC/Cloudformation.md)
